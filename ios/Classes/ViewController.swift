@@ -164,19 +164,18 @@ extension ViewController {
      */
     
     @objc func callGraphAPI(_ sender: UIButton) {
-          self.acquireTokenInteractively()
-//        self.loadCurrentAccount { (account) in
-//
-//            guard let currentAccount = account else {
-//
-//                // We check to see if we have a current logged in account.
-//                // If we don't, then we need to sign someone in.
-//                self.acquireTokenInteractively()
-//                return
-//            }
-//
-//            self.acquireTokenSilently(currentAccount)
-//        }
+        self.loadCurrentAccount { (account) in
+            
+            guard let currentAccount = account else {
+                
+                // We check to see if we have a current logged in account.
+                // If we don't, then we need to sign someone in.
+                self.acquireTokenInteractively()
+                return
+            }
+            
+            self.acquireTokenSilently(currentAccount)
+        }
     }
     
     func acquireTokenInteractively() {
@@ -326,6 +325,9 @@ extension ViewController {
             
             if let error = error {
                 self.updateLogging(text: "Couldn't query current account with error: \(error)")
+                if let completion = completion {
+                               completion(nil)
+                           }
                 return
             }
             
