@@ -17,8 +17,8 @@ class Onedriveplugin {
     return version;
   }
 
-  static Future<String> get signIn async {
-    final String version = await _channel.invokeMethod('signIn');
+  static Future<String>  signIn(var clientId) async {
+    final String version = await _channel.invokeMethod('signIn',{"clientId":clientId});
     // ignore: missing_return
     _channel.setMethodCallHandler((MethodCall call) {
       var args = call.arguments;

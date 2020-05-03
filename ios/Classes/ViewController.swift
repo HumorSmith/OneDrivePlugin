@@ -34,8 +34,8 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
     
     // Update the below to your client ID you received in the portal. The below is for running the demo only
     let kClientID = "00bdbcc6-f08f-47c1-bdba-acc9381c362c"
-     let kGraphEndpoint = "https://graph.microsoft.com/"
-     let kAuthority = "https://login.microsoftonline.com/common"
+    let kGraphEndpoint = "https://graph.microsoft.com/"
+    let kAuthority = "https://login.microsoftonline.com/common"
     
     let kScopes: [String] = ["user.read"]
     

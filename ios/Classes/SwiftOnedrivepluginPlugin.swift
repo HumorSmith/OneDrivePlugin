@@ -8,7 +8,7 @@ public class SwiftOnedrivepluginPlugin: NSObject, FlutterPlugin {
     public static var userName:String = "";
     public static var mail:String = "";
     
-    let kClientID = "00bdbcc6-f08f-47c1-bdba-acc9381c362c"
+    static var kClientID:String = ""
     let kGraphEndpoint = "https://graph.microsoft.com/"
     let kAuthority = "https://login.microsoftonline.com/common"
 
@@ -64,7 +64,7 @@ public class SwiftOnedrivepluginPlugin: NSObject, FlutterPlugin {
         // requests are made.
         print("initMSAL");
         let authority = try MSALAADAuthority(url: URL(string: kAuthority)!)
-        let msalConfiguration = MSALPublicClientApplicationConfig(clientId: kClientID, redirectUri: nil, authority: authority)
+        let msalConfiguration = MSALPublicClientApplicationConfig(clientId: SwiftOnedrivepluginPlugin.kClientID, redirectUri: nil, authority: authority)
         self.applicationContext = try MSALPublicClientApplication(configuration: msalConfiguration)
         MSALGlobalConfig.loggerConfig.setLogCallback { (logLevel, message, containsPII) in
 
@@ -124,6 +124,13 @@ public class SwiftOnedrivepluginPlugin: NSObject, FlutterPlugin {
 //            }
             break
         case "signIn":
+            if let args = call.arguments as? Dictionary<String, Any>,let clientId: String = args["clientId"] as? String{
+                SwiftOnedrivepluginPlugin.kClientID = clientId;
+                if clientId == nil{
+                    print("client id is null");
+                    return ;
+                }
+            }
             signIn();
             
 //            SignInOneDriverController *testController = [[TestViewController alloc]initWithNibName:@"TestViewController" bundle:nil];

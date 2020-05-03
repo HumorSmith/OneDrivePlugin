@@ -7,7 +7,6 @@ import UIKit
 import MSAL;
 
 public class SignInOneDriverController: UIViewController, URLSessionDelegate {
-    let kClientID = "00bdbcc6-f08f-47c1-bdba-acc9381c362c"
     let kGraphEndpoint = "https://graph.microsoft.com/"
     let kAuthority = "https://login.microsoftonline.com/common"
 
@@ -114,7 +113,7 @@ public class SignInOneDriverController: UIViewController, URLSessionDelegate {
 
         let authority = try MSALAADAuthority(url: authorityURL)
 
-        let msalConfiguration = MSALPublicClientApplicationConfig(clientId: kClientID, redirectUri: nil, authority: authority)
+        let msalConfiguration = MSALPublicClientApplicationConfig(clientId: SwiftOnedrivepluginPlugin.kClientID, redirectUri: nil, authority: authority)
         self.applicationContext = try MSALPublicClientApplication(configuration: msalConfiguration)
         self.initWebViewParams()
     }
