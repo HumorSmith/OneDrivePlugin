@@ -77,7 +77,26 @@ class _MyAppState extends State<MyApp> {
                 upload();
               },
             ),
-
+            RaisedButton(
+              child: Text("获取根目录"),
+              onPressed: () {
+                if (Onedriveplugin.accessToken == null) {
+                  print("请先登录");
+                  return;
+                }
+                getRoot();
+              },
+            ),
+            RaisedButton(
+              child: Text("获取文件列表"),
+              onPressed: () {
+                if (Onedriveplugin.accessToken == null) {
+                  print("请先登录");
+                  return;
+                }
+                listFile();
+              },
+            ),
           ],
         )),
       ),
@@ -98,8 +117,19 @@ class _MyAppState extends State<MyApp> {
     var init = await Onedriveplugin.upload;
     print("upload result $init");
   }
+
   Future<void> signIn() async {
     var init = await Onedriveplugin.signIn;
     print("upload result $init");
+  }
+
+  Future<void> getRoot() async {
+    var init = await Onedriveplugin.getRoot;
+    print("upload result $init");
+  }
+
+  Future<void> listFile() async {
+    var init = await Onedriveplugin.listFile;
+    print("listFile result $init");
   }
 }

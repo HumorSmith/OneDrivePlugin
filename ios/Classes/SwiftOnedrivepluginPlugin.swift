@@ -4,6 +4,10 @@ import UIKit
 
 public class SwiftOnedrivepluginPlugin: NSObject, FlutterPlugin {
 
+    public static var accessToken:String = "";
+    public static var userName:String = "";
+    public static var mail:String = "";
+    
     let kClientID = "00bdbcc6-f08f-47c1-bdba-acc9381c362c"
     let kGraphEndpoint = "https://graph.microsoft.com/"
     let kAuthority = "https://login.microsoftonline.com/common"
@@ -13,18 +17,30 @@ public class SwiftOnedrivepluginPlugin: NSObject, FlutterPlugin {
 
     var accessToken = String()
     var applicationContext: MSALPublicClientApplication?
-
-
+    static var instance:SwiftOnedrivepluginPlugin?;
+    var channel:FlutterMethodChannel?;
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "onedriveplugin", binaryMessenger: registrar.messenger())
-        let instance = SwiftOnedrivepluginPlugin()
-        registrar.addMethodCallDelegate(instance, channel: channel)
+        let channelLocal = FlutterMethodChannel(name: "onedriveplugin", binaryMessenger: registrar.messenger())
+        instance = SwiftOnedrivepluginPlugin()
+        instance?.channel = channelLocal;
+        registrar.addMethodCallDelegate(instance!, channel: channelLocal)
 
     }
 
     
+    public static func  returnLoginInfo(){
+        print("returnLoginInfo");
+        var parameters = Dictionary<String, String>();
+        parameters["token"]  = accessToken;
+        parameters["userName"] = userName;
+        parameters["mail"] = mail;
+        print("returnLoginInfo111===>\(parameters)");
+        instance?.channel?.invokeMethod("returnLoginInfo", arguments: parameters)
+    }
+    
+    
     public func signIn(){
-        let signInController =  ViewController.init();
+        let signInController =  SignInOneDriverController.init();
         let rootViewController:UIViewController! = UIApplication.shared.keyWindow?.rootViewController
         if (rootViewController is UINavigationController) {
             print("1111")

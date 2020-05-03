@@ -54,6 +54,8 @@ class ViewController: UIViewController, UITextFieldDelegate, URLSessionDelegate 
         Setup public client application in viewDidLoad
     */
 
+
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -323,13 +325,11 @@ extension ViewController {
         // For example, see "accountsFromDeviceForParameters:completionBlock:" - https://azuread.github.io/microsoft-authentication-library-for-objc/Classes/MSALPublicClientApplication.html#/c:objc(cs)MSALPublicClientApplication(im)accountsFromDeviceForParameters:completionBlock:
         applicationContext.getCurrentAccount(with: msalParameters, completionBlock: { (currentAccount, previousAccount, error) in
             
-            if let error = error {
-                self.updateLogging(text: "Couldn't query current account with error: \(error)")
-                if let completion = completion {
-                               completion(nil)
-                           }
-                return
-            }
+//            if let error = error {
+//                self.updateLogging(text: "Couldn't query current account with error: \(error)")
+//                
+//                return
+//            }
             
             if let currentAccount = currentAccount {
                 
