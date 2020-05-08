@@ -51,54 +51,54 @@ class _MyAppState extends State<MyApp> {
         ),
         body: new Container(
             child: new Column(
-          children: [
-            Text('Running on: $_platformVersion\n'),
-            RaisedButton(
-              child: Text("初始化"),
-              onPressed: () {
-                init();
-              },
-            ),
-            RaisedButton(
-              child: Text("登录"),
-              onPressed: () {
-                signIn();
-              },
-            ),
-            RaisedButton(
-              child: Text("下载"),
-              onPressed: () {
-                download();
-              },
-            ),
-            RaisedButton(
-              child: Text("上传"),
-              onPressed: () {
-                upload();
-              },
-            ),
-            RaisedButton(
-              child: Text("获取根目录"),
-              onPressed: () {
-                if (Onedriveplugin.accessToken == null) {
-                  print("请先登录");
-                  return;
-                }
-                getRoot();
-              },
-            ),
-            RaisedButton(
-              child: Text("获取文件列表"),
-              onPressed: () {
-                if (Onedriveplugin.accessToken == null) {
-                  print("请先登录");
-                  return;
-                }
-                listFile();
-              },
-            ),
-          ],
-        )),
+              children: [
+                Text('Running on: $_platformVersion\n'),
+                RaisedButton(
+                  child: Text("初始化"),
+                  onPressed: () {
+                    init();
+                  },
+                ),
+                RaisedButton(
+                  child: Text("登录"),
+                  onPressed: () {
+                    signIn();
+                  },
+                ),
+                RaisedButton(
+                  child: Text("下载"),
+                  onPressed: () {
+                    download();
+                  },
+                ),
+                RaisedButton(
+                  child: Text("上传"),
+                  onPressed: () {
+                    upload();
+                  },
+                ),
+                RaisedButton(
+                  child: Text("获取根目录"),
+                  onPressed: () {
+                    if (Onedriveplugin.accessToken == null) {
+                      print("请先登录");
+                      return;
+                    }
+                    getRoot();
+                  },
+                ),
+                RaisedButton(
+                  child: Text("获取文件列表"),
+                  onPressed: () {
+                    if (Onedriveplugin.accessToken == null) {
+                      print("请先登录");
+                      return;
+                    }
+                    listFile();
+                  },
+                ),
+              ],
+            )),
       ),
     );
   }
@@ -118,8 +118,12 @@ class _MyAppState extends State<MyApp> {
     print("upload result $init");
   }
 
+
   Future<void> signIn() async {
-    var init = await Onedriveplugin.signIn;
+    var init = await Onedriveplugin.signIn(
+        '', (accessToken, userName) => {
+    print("main accessToken${accessToken}    name = ${userName}")
+    });
     print("upload result $init");
   }
 
