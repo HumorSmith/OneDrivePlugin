@@ -6,11 +6,17 @@ PODS:
   - onedriveplugin (0.0.1):
     - Flutter
     - MSAL
+  - path_provider (0.0.1):
+    - Flutter
+  - path_provider_macos (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - MSAL
   - onedriveplugin (from `.symlinks/plugins/onedriveplugin/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - path_provider_macos (from `.symlinks/plugins/path_provider_macos/ios`)
 
 SPEC REPOS:
   trunk:
@@ -21,11 +27,17 @@ EXTERNAL SOURCES:
     :path: Flutter
   onedriveplugin:
     :path: ".symlinks/plugins/onedriveplugin/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  path_provider_macos:
+    :path: ".symlinks/plugins/path_provider_macos/ios"
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   MSAL: d62d5af3b89f9753be6d157035629bbd851e4d15
   onedriveplugin: aaf0d6c415396ba4a63c6f6098167ceb18bf0b58
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
 
 PODFILE CHECKSUM: e5b6129cd19d8e3b8b698352f5afead47671adfc
 

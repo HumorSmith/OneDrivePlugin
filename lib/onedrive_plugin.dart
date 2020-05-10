@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
+import 'dart:io' as io;
+import 'dart:typed_data';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -83,23 +87,38 @@ class Onedriveplugin {
     pattern.allMatches(text).forEach((match) => print(match.group(0)));
   }
 
-  static Future<String> get download async {
+  static Future<String>  download(String localPath,String cloudFileName) async {
     try {
+      print("localPath ${localPath}");
       var dio = Dio(BaseOptions(headers: {
         'Authorization': accessToken,
       }));
       var response = await dio
-          .request('https://graph.microsoft.com/v1.0/me/drive/root/children');
-      print(response);
-      return 'hello world';
+          .download('https://graph.microsoft.com/v1.0/drive/special/approot:/${cloudFileName}:/content',localPath, onReceiveProgress: (received, total) {
+        print((received / total * 100).toStringAsFixed(0) + "%");
+      });
+      return "success";
     } catch (e) {
       print(e);
+      return e.toString();
     }
     return "";
   }
 
-  static Future<String> get upload async {
-    final String version = await _channel.invokeMethod('upload');
-    return version;
+  static Future<String>  upload(String localPath,String cloudFileName) async {
+    try {
+      print("localPath ${localPath}");
+      var dio = Dio(BaseOptions(headers: {
+        'Authorization': accessToken,
+      }));
+      var response = await dio.put('https://graph.microsoft.com/v1.0/drive/special/approot:/${cloudFileName}:/content',data: File(localPath).openRead(), onReceiveProgress: (received, total) {
+        print((received / total * 100).toStringAsFixed(0) + "%");
+      });
+      print(response.toString());
+      return "success";
+    } catch (e) {
+      print(e);
+      return e.toString();
+    }
   }
 }

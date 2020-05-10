@@ -1,10 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:onedriveplugin/onedrive_plugin.dart';
-
-
+import 'package:path_provider/path_provider.dart';
 void main() {
   runApp(MyApp());
 }
@@ -110,12 +111,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> download() async {
-    var init = await Onedriveplugin.download;
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    var localPath = appDocDir.path+'/a.zip';
+    var init = await Onedriveplugin.download(localPath,'note2020-04-25-21-01-10.zip');
     print("download result $init");
   }
 
   Future<void> upload() async {
-    var init = await Onedriveplugin.upload;
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    var localPath = appDocDir.path+'/a.zip';
+    var init = await Onedriveplugin.upload(localPath,"a.zip");
     print("upload result $init");
   }
 

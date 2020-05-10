@@ -67,7 +67,7 @@ class ListFileResp extends Object {
   ParentReference parentReference;
 
   @JsonKey(name: 'file')
-  File file;
+  DriveFile file;
 
   @JsonKey(name: 'fileSystemInfo')
   FileSystemInfo fileSystemInfo;
@@ -199,7 +199,7 @@ class ListFileResp extends Object {
 
   
 @JsonSerializable()
-  class File extends Object {
+  class DriveFile extends Object {
 
   @JsonKey(name: 'mimeType')
   String mimeType;
@@ -207,9 +207,9 @@ class ListFileResp extends Object {
   @JsonKey(name: 'hashes')
   Hashes hashes;
 
-  File(this.mimeType,this.hashes,);
+  DriveFile(this.mimeType,this.hashes,);
 
-  factory File.fromJson(Map<String, dynamic> srcJson) => _$FileFromJson(srcJson);
+  factory DriveFile.fromJson(Map<String, dynamic> srcJson) => _$FileFromJson(srcJson);
 
   Map<String, dynamic> toJson() => _$FileToJson(this);
 
