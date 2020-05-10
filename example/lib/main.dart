@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:onedriveplugin/onedriveplugin.dart';
+import 'package:onedriveplugin/onedrive_plugin.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -121,8 +122,8 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> signIn() async {
     var init = await Onedriveplugin.signIn(
-        '', (accessToken, userName) => {
-    print("main accessToken${accessToken}    name = ${userName}")
+        '00bdbcc6-f08f-47c1-bdba-acc9381c362c', (signInfo) => {
+        print("signInfo accessToken= "+signInfo.accessToken+"    userName = "+signInfo.userName)
     });
     print("upload result $init");
   }

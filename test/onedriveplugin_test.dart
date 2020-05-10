@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:onedriveplugin/onedriveplugin.dart';
+import 'package:onedriveplugin/onedrive_plugin.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('onedriveplugin');
